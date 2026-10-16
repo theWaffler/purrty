@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Clowder</title>
+  <meta name="description" content="A cozy cat themed RPG party roster for remembering the people in your life. Everything stays on your phone.">
+  <meta name="theme-color" content="#fff1e6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1f1726" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Clowder">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="app" aria-live="polite"></main>
+  <div id="modal"></div>
+  <nav class="tabs" aria-label="Main">
+    <a class="tab" data-tab="party" href="#/"><span data-icon="paw"></span><span>Party</span></a>
+    <a class="tab" data-tab="bdays" href="#/bdays"><span data-icon="cake"></span><span>Birthdays</span></a>
+    <a class="tab" data-tab="settings" href="#/settings"><span data-icon="yarn"></span><span>Settings</span></a>
+  </nav>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

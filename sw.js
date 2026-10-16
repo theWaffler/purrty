@@ -1,6 +1,6 @@
 // Offline support. Bump VERSION when you change files so phones pick up the update.
-const VERSION = 'clowder-v1';
-const FONTS = 'clowder-fonts';
+const VERSION = 'purrty-v1';
+const FONTS = 'purrty-fonts';
 const SHELL = [
   './', './index.html', './css/style.css',
   './js/app.js', './js/db.js', './js/pixels.js',

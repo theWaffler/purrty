@@ -22,8 +22,8 @@ const prettyDate = key => { const [y, m, d] = key.split('-').map(Number); return
 
 function safeGet(k) { try { return localStorage.getItem(k); } catch { return null; } }
 function safeSet(k, v) { try { localStorage.setItem(k, v); } catch { /* private mode */ } }
-const settings = Object.assign({ sound: true }, JSON.parse(safeGet('clowder.settings') || '{}'));
-const saveSettings = () => safeSet('clowder.settings', JSON.stringify(settings));
+const settings = Object.assign({ sound: true }, JSON.parse(safeGet('purrty.settings') || '{}'));
+const saveSettings = () => safeSet('purrty.settings', JSON.stringify(settings));
 
 let people = [];
 const listState = { q: '', sort: 'name' };
@@ -156,11 +156,11 @@ function isIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navi
 function isStandalone() { return window.matchMedia('(display-mode: standalone)').matches || navigator.standalone; }
 
 function renderList() {
-  const showInstall = isIOS() && !isStandalone() && safeGet('clowder.hideInstall') !== '1';
+  const showInstall = isIOS() && !isStandalone() && safeGet('purrty.hideInstall') !== '1';
   app.innerHTML = `
     <header class="brand">
       <img class="av logo" src="${px.catURL({ fur: 'ginger', pattern: 'tabby', eyes: 'green', acc: 'crown' })}" alt="">
-      <div><h1>Clowder</h1><p class="sub">${people.length ? `${people.length} in your party` : 'your party of people'}</p></div>
+      <div><h1>Purrty</h1><p class="sub">${people.length ? `${people.length} in your party` : 'your party of people'}</p></div>
     </header>
     ${showInstall ? `<div class="box notice"><p>Tap <b>Share</b> then <b>Add to Home Screen</b>. It keeps your notes safe from Safari's cleanup.</p><button class="link" data-act="hide-install">Got it</button></div>` : ''}
     ${people.length ? `
@@ -181,7 +181,7 @@ function renderRoster() {
   if (!people.length) {
     el.innerHTML = `<div class="empty">
       <img class="av xl bob" src="${px.catURL({ fur: 'gray', pattern: 'tuxedo', eyes: 'gold', acc: 'wizard' })}" alt="">
-      <h2>Your clowder is empty</h2>
+      <h2>Your purrty is empty</h2>
       <p>Add the people in your life and keep track of the little things about them.</p></div>`;
     return;
   }
@@ -411,17 +411,17 @@ async function renderSettings() {
       <div class="panel-h"><h2>Danger zone</h2></div>
       <button class="btn danger" data-act="wipe">Erase everything</button>
     </section>
-    <p class="foot">Clowder · a group of cats is called a clowder</p>`;
+    <p class="foot">meowwww</p>`;
 }
 
 async function exportData() {
-  const data = { app: 'clowder', version: 1, exported: new Date().toISOString(), people };
-  const name = `clowder-backup-${ymd(new Date())}.json`;
+  const data = { app: 'purrty', version: 1, exported: new Date().toISOString(), people };
+  const name = `purrty-backup-${ymd(new Date())}.json`;
   const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
   try {
     const file = new File([blob], name, { type: 'application/json' });
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      await navigator.share({ files: [file], title: 'Clowder backup' });
+      await navigator.share({ files: [file], title: 'Purrty backup' });
       return;
     }
   } catch (e) { if (e && e.name === 'AbortError') return; }
@@ -447,7 +447,7 @@ async function importData(file) {
     toast(`Loaded ${n} member${n === 1 ? '' : 's'}`);
     mew(true);
   } catch {
-    toast("That file doesn't look like a Clowder backup");
+    toast("That file doesn't look like a Purrty backup");
   }
 }
 
@@ -537,7 +537,7 @@ app.addEventListener('click', async e => {
   const p = people.find(x => x.id === app.dataset.id);
 
   if (act === 'sort') { listState.sort = t.dataset.sort; document.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c === t)); renderRoster(); }
-  else if (act === 'hide-install') { safeSet('clowder.hideInstall', '1'); renderList(); }
+  else if (act === 'hide-install') { safeSet('purrty.hideInstall', '1'); renderList(); }
   else if (act === 'heart' && p) {
     const i = +t.dataset.i, cur = hpOn(p);
     const next = i < cur ? i : i + 1;

@@ -1,5 +1,5 @@
 // Tiny IndexedDB wrapper. Everything is stored on this device only.
-const DB_NAME = 'clowder';
+const DB_NAME = 'purrty';
 const DB_VERSION = 1;
 const STORE = 'people';
 
